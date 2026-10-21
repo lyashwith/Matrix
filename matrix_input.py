@@ -1,5 +1,6 @@
 import tkinter as tk
 import array
+import transpose
 root = tk.Tk()
 root.geometry("500x200")
 entry=[]
@@ -21,15 +22,20 @@ def matrix_gen():
         while col_no<3:
             row.append(int(entry[col_no][row_no].get()))
             col_no+=1
-        matrix.append(array.array('Q',row))
+        matrix.append(row)
         row_no+=1
     print(matrix)
     return matrix
     
-
+def transpose_call():
+    global matrix
+    a=transpose.transpose(matrix,3,3)
+    print(a)
 
     
 btn = tk.Button(root, text="submit", command=matrix_gen)
 btn.grid(row=4, column=0, columnspan=3, pady=10)
+btn = tk.Button(root, text="submit", command=transpose_call)
+btn.grid(row=5, column=0, columnspan=3, pady=10)
 
 root.mainloop()
